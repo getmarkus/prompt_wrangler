@@ -1,0 +1,1 @@
+Extract all relevant medical entities from the following text and format your response as a valid JSON object. Do not include any text outside of the JSON structure:
