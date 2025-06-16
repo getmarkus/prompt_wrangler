@@ -34,11 +34,12 @@ git clone https://github.com/your-username/prompt-wrangler.git
 cd prompt-wrangler
 
 # Set up a virtual environment
-python -m venv venv
+uv venv
 source venv/bin/activate  # On Windows: venv\Scripts\activate
 
 # Install dependencies
-pip install -e .
+uv sync
+uv add pytest --dev
 ```
 
 ## ⚙️ Configuration
@@ -64,23 +65,23 @@ DEFAULT_MAX_TOKENS=1000
 
 ```bash
 # Using command-line arguments
-prompt-wrangler extract --system "You are a medical NER extraction assistant." \
+uv run -m app.main extract --system "You are a medical NER extraction assistant." \
     --user "Extract entities from this text." \
     --text "Patient requires a full face CPAP mask with humidifier due to AHI > 20. Ordered by Dr. Cameron."
 
 # Using text files for input
-prompt-wrangler extract --system-file system_prompt.txt \
+uv run -m app.main extract --system-file system_prompt.txt \
     --user-file user_prompt.txt \
     --text-file sample_text.txt
 
 # Using interactive mode
-prompt-wrangler extract --interactive
+uv run -m app.main extract --interactive
 ```
 
 ### Test case example
 
 ```bash
-python -m app.main extract --system-file system_prompt.txt --user-file user_prompt.txt --text-file test_case_1.txt
+uv run python -m app.main extract --system-file system_prompt.txt --user-file user_prompt.txt --text-file test_case_1.txt
 ```
 
 
